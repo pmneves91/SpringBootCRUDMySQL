@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import pt.pedroneves.springbootcrudmysql.exception.ExceptionResponse;
-import pt.pedroneves.springbootcrudmysql.exception.UnsuportedMathOperationException;
+import pt.pedroneves.springbootcrudmysql.exception.ResourceNotFoundException;
 
 import java.util.Date;
 
@@ -25,7 +25,7 @@ public class CustomizedResponseEntityExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(UnsuportedMathOperationException.class)
+    @ExceptionHandler(ResourceNotFoundException.class)
     public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception ex, WebRequest request) {
         ExceptionResponse exceptionResponse =
                 new ExceptionResponse(
